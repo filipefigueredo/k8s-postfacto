@@ -1,0 +1,3 @@
+installCRD: true
+nodeSelector:
+  kubernetes.io/os: linux

@@ -1,0 +1,55 @@
+ingress-nginx:
+  controller:
+    service:
+      loadBalancerIP: 20.101.193.11
+    annotations:
+      service.beta.kubernetes.io/azure-dns-label-name: 'nmbrs-api.westeurope.cloudapp.azure.com'
+    nodeSelector:
+      kubernetes.azure.com/mode: system
+      kubernetes.io/os: linux
+    resources:
+      requests:
+        cpu: 100m
+        memory: 180Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 50
+      targetMemoryUtilizationPercentage: 50
+      behavior:
+        scaleDown:
+          stabilizationWindowSeconds: 300
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 180
+        scaleUp:
+          stabilizationWindowSeconds: 300
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 60
+  defaultBackend:
+    enabled: true
+    nodeSelector:
+      kubernetes.azure.com/mode: system
+      kubernetes.io/os: linux
+ingress:
+  hosts:
+    - host: adminer.k8s.com
+      paths:
+        - path: /
+          backend:  
+            serviceName: adminer
+            servicePort: 8080
+    - host: kanban.k8s.com
+      paths: 
+        - path: /api/
+          backend:
+            serviceName: kanban-app
+            servicePort: 8080
+        - path: /
+          backend:
+            serviceName: kanban-ui
+            servicePort: 80

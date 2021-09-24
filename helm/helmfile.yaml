@@ -1,0 +1,24 @@
+repositories:
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+
+releases:
+  - name: ingress-nginx
+    namespace: ingress
+    chart: ./charts/ingress-nginx
+    values:
+      - ./values/ingress-nginx.values.yaml
+
+  - name: postfacto-v1
+    namespace: postfacto
+    chart: ./charts/postfacto
+    values:
+      - ./values/postfacto-v1.values.yaml
+
+  - name: postfacto-v2
+    namespace: postfacto
+    chart: ./charts/postfacto
+    values:
+      - ./values/postfacto-v2.values.yaml

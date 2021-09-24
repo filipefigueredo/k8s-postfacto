@@ -1,0 +1,86 @@
+image:
+  repository: docker.io/postfacto/postfacto
+  pullPolicy: IfNotPresent
+appVersion: 4.1.0
+adminEmail: example@example.com
+adminPassword: password
+secretKeyBase: 'Wklj85GHJg'
+## Postfacto pods should be scheduled onto a node
+## with label having key "node.kubernetes.io/workload" and value "applications"
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: node.kubernetes.io/workload
+              operator: In
+              values:
+                - applications
+
+## bitnami redis chart values
+## ref: https://github.com/bitnami/charts/blob/master/bitnami/redis/README.md
+redis:
+  usePassword: true
+  password: 'redis-password'
+  master:
+    ## postegresql pods should be scheduled onto a node
+    ## with label having key "node.kubernetes.io/workload" and value "databases"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node.kubernetes.io/workload
+                  operator: In
+                  values:
+                    - databases
+    #persistence:
+    #  enabled: false
+    #  existingClaim: 'postfacto-v2-redis-pvc'
+  slave:
+    ## redis pods should be scheduled onto a node
+    ## with label having key "node.kubernetes.io/workload" and value "databases"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node.kubernetes.io/workload
+                  operator: In
+                  values:
+                    - databases
+    #persistence:
+    #  enabled: false
+    #  existingClaim: 'postfacto-v2-redis-pvc'
+
+## bitnami postgresql chart values
+## ref: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/README.md
+postgresql:
+  postgresqlPassword: 'postgresql-password'
+  #persistence:
+  #  enabled: false
+  #  existingClaim: 'postfacto-v2-postgresql-pvc'
+  master:
+    ## postegresql pods should be scheduled onto a node
+    ## with label having key "node.kubernetes.io/workload" and value "databases"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node.kubernetes.io/workload
+                  operator: In
+                  values:
+                    - databases
+  slave:
+    ## postegresql pods should be scheduled onto a node
+    ## with label having key "node.kubernetes.io/workload" and value "databases"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node.kubernetes.io/workload
+                  operator: In
+                  values:
+                    - databases
