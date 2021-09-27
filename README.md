@@ -74,7 +74,7 @@ $ terraform  apply
 
 ### Admin dashborad
 
-For testing purposes, a default admin user `email@example.com` with password `password` is created when the postfacto pod spin up.
+For testing purposes, a default admin user `example@example.com` with password `password` is created when the postfacto pod spin up.
 
 The admin dashboard will be available at <http://postfacto.api0.live/admin>.
 
