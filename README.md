@@ -49,7 +49,7 @@ The following pre-requisites were added at a later stage of the project:
 6. A [service principal](https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal?tabs=azure-cli) for provisioning the required resources for AKS cluster.
 7. A configured [storage](https://docs.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli) to secure your Terraform state. If necessary, your should go to main.tf and reconfigure backend to match you storage configuration.
 
-### Provisioning the infrastructure
+### Provisioning the infrastructure and deploying the applications
 
 ```bash
 $ cd terraform
@@ -67,16 +67,8 @@ $ terraform <plan file> apply
 $ terraform  apply
 ```
 
-> Note: Your going to be prompted to enter the credential related variables. You can handle it by using environment variables to set [variables](https://www.terraform.io/docs/cli/config/environment-variables.html#tf_var_name)
+> Note: Your going to be prompted to enter credential related variables. You can handle it by using environment variables to set [variables](https://www.terraform.io/docs/cli/config/environment-variables.html#tf_var_name)
 
-### Deploying the applications
-
-```bash
-$ cd helm
-
-# sync your cluster state as described in your helmfile
-$ helmfile sync
-```
 
 ## Testing the application
 
