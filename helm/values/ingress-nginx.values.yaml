@@ -1,8 +1,4 @@
 controller:
-  service:
-    loadBalancerIP: 20.101.193.11
-  annotations:
-    service.beta.kubernetes.io/azure-dns-label-name: 'nmbrs-api.westeurope.cloudapp.azure.com'
   nodeSelector:
     kubernetes.azure.com/mode: system
     kubernetes.io/os: linux

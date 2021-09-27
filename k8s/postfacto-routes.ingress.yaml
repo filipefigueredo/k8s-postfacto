@@ -19,6 +19,7 @@ metadata:
       if ( $http_x_postfacto_version = "4.2.0" ){
       proxy_pass http://postfacto-v2.postfacto.svc.cluster.local:80;
       }
+      
 spec:
   rules:
     - host: postfacto.api0.live

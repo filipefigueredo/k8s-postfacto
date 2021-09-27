@@ -1,23 +1,14 @@
-variable "subscriptionID" {
-  type        = string
-  description = "Subscription ID"
+variable "aks_service_principal_app_id" {
+  description = "Application ID/Client ID  of the service principal. Used by AKS to manage AKS related resources on Azure like vms, subnets."
 }
 
-variable "appID" {
-  description = "Azure Kubernetes Service Cluster service principal"
+variable "aks_service_principal_client_secret" {
+  description = "Secret of the service principal. Used by AKS to manage Azure."
 }
 
-variable "password" {
-  description = "Azure Kubernetes Service Cluster password"
-}
 
-variable "tenantID" {
-  description = "Azure Kubernetes Service Cluster tenant ID"
-}
-
-variable "resourceGroupName" {
-  type        = string
-  description = "Name of the resource group"
+variable "resource_group_name" {
+  description = "Name of the resource group."
 }
 
 variable "location" {
@@ -40,3 +31,35 @@ variable "k8s_cluster_name" {
   description = "Cluster name"
 }
 
+
+variable "k8s_postfacto_v1_redis_volume_name" {
+  type        = string
+  description = "Postfacto v1 - Redis volume name"
+}
+
+variable "k8s_postfacto_v1_postgresql_volume_name" {
+  type        = string
+  description = "Postfacto v1 - postgreSQL volume name"
+}
+
+variable "k8s_postfacto_v2_redis_volume_name" {
+  type        = string
+  description = "Postfacto v2 - Redis volume name"
+}
+
+variable "k8s_postfacto_v2_postgresql_volume_name" {
+  type        = string
+  description = "Postfacto v2 - postgreSQL volume name"
+}
+
+#variable "tls_certificate_b64" {
+#type        = string
+#description = "Domain TLS Certificate (base64)"
+#sensitive = true
+#}
+
+#variable "certificate_private_key_b64" {
+#type        = string
+#description = "Private key (base64)"
+#sensitive = true
+#}

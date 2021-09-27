@@ -3,9 +3,8 @@
 ## Ingress (App)
 
 - Deploy a cert-manager service to handle Let's encrypt certificates
-- Create a new helm chart to automate ingress routes and services deployments
 - Deploy another ingress that handles the `X-POSTFACTO-VERSION` natively (ambassador, Traefik, etc)
-- Automate controller.service.loadBalancerIP variable to get the lb IP
+
 
 ## Postfacto
 

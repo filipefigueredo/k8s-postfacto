@@ -20,8 +20,12 @@ affinity:
 ## bitnami redis chart values
 ## ref: https://github.com/bitnami/charts/blob/master/bitnami/redis/README.md
 redis:
+  storageClass: ''
   usePassword: true
   password: 'redis-password'
+  persistence:
+    enabled: true
+    existingClaim: 'postfacto-v2-redis-data-claim'
   master:
     ## postegresql pods should be scheduled onto a node
     ## with label having key "node.kubernetes.io/workload" and value "databases"
@@ -34,10 +38,9 @@ redis:
                   operator: In
                   values:
                     - databases
-    #persistence:
-    #  enabled: false
-    #  existingClaim: 'postfacto-v2-redis-pvc'
+
   slave:
+    storageClass: ''
     ## redis pods should be scheduled onto a node
     ## with label having key "node.kubernetes.io/workload" and value "databases"
     affinity:
@@ -49,17 +52,16 @@ redis:
                   operator: In
                   values:
                     - databases
-    #persistence:
-    #  enabled: false
-    #  existingClaim: 'postfacto-v2-redis-pvc'
 
 ## bitnami postgresql chart values
 ## ref: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/README.md
 postgresql:
   postgresqlPassword: 'postgresql-password'
-  #persistence:
-  #  enabled: false
-  #  existingClaim: 'postfacto-v2-postgresql-pvc'
+  persistence:
+    enabled: true
+    existingClaim: 'postfacto-v2-postgresql-data-claim'
+  volumePermissions:
+    enabled: true
   master:
     ## postegresql pods should be scheduled onto a node
     ## with label having key "node.kubernetes.io/workload" and value "databases"
