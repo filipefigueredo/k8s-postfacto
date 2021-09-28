@@ -40,8 +40,6 @@ The following pre-requisites were added at a later stage of the project:
 
 1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) to your local machine
 2. Install [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli) to your local machine
-3. Install [Helm](https://helm.sh/docs/intro/install/) to your local machine
-4. Install [Helmfile](https://github.com/roboll/helmfile) to your local machine
 
 #### Azure pre-requisites
 
@@ -68,7 +66,6 @@ $ terraform  apply
 ```
 
 > Note: Your going to be prompted to enter credential related variables. You can handle it by using environment variables to set [variables](https://www.terraform.io/docs/cli/config/environment-variables.html#tf_var_name)
-
 
 ## Testing the application
 
